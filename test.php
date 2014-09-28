@@ -1,6 +1,6 @@
 <?php
 echo "Hello World";
-$connection = mysqli_connect('localhost','root','root');
+$connection = mysqli_connect('localhost','root','root2');
 
 if (!$connection)
 {
