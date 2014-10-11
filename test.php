@@ -9,48 +9,41 @@ if (!$connection)
 else
 {
 	$sql = "DROP DATABASE mytestdb";
+		
+	$sql = "CREATE DATABASE mytestdb";
 	$result = mysqli_query($connection,$sql);
-
+	
 	if ($result)
 	{
-		$sql = "CREATE DATABASE mytestdb";
-		$result = mysqli_query($connection,$sql);
-	
+		echo "Database Created";
+			
+		$connection = mysqli_connect('localhost','root','root','mytestdb');
+		$sql = "CREATE TABLE persons(firstname CHAR(30),lastname CHAR(30),age INT)";			$result = mysqli_query($connection,$sql);
 		if ($result)
 		{
-			echo "Database Created";
+			echo "table created";
+			$sql = "INSERT INTO persons (firstname,lastname,age) VALUES ('Jason','Gilbert',44)";
 			
-			$connection = mysqli_connect('localhost','root','root','mytestdb');
-			$sql = "CREATE TABLE persons(firstname CHAR(30),lastname CHAR(30),age INT)";
 			$result = mysqli_query($connection,$sql);
 			if ($result)
 			{
-				echo "table created";
-				$sql = "INSERT INTO persons (firstname,lastname,age) VALUES ('Jason','Gilbert',44)";
-				$result = mysqli_query($connection,$sql);
-				if ($result)
-				{
-					echo "Insert Successful";
-				}
-				else
-				{
-					echo "failed".mysqli_error($connection);
-				}
-			}		
+				echo "Insert Successful";
+			}
 			else
 			{
 				echo "failed".mysqli_error($connection);
-			}		
-		}
+			}
+		}		
 		else
-		{	
+		{
 			echo "failed".mysqli_error($connection);
-		}
+		}		
 	}
 	else
-	{
-			echo "failed".mysqli_error($connection);
+	{	
+		echo "failed".mysqli_error($connection);
 	}
+	
 	mysqli_close($connection);
 }
 
