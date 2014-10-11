@@ -9,8 +9,6 @@ if (!$connection)
 else
 {
 	$sql = "DROP DATABASE mytestdb";
-	$result = mysqli_query($connection,$sql);
-
 	if (!$result)
 	{
 		echo mysqli_error($connection);
